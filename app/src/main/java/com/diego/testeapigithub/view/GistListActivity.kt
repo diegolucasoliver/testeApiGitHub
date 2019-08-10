@@ -2,11 +2,13 @@ package com.diego.testeapigithub.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.diego.testeapigithub.GistListViewModel
 import com.diego.testeapigithub.R
 import com.diego.testeapigithub.adapter.GistListAdapter
-import com.diego.testeapigithub.model.Gist
 import kotlinx.android.synthetic.main.activity_gist_list.*
 
 class GistListActivity : AppCompatActivity() {
@@ -14,40 +16,21 @@ class GistListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gist_list)
-        setUpAdapter()
-    }
 
-    fun setUpAdapter() {
-        with(rvGistList) {
-            layoutManager = LinearLayoutManager(
-                this@GistListActivity, RecyclerView.VERTICAL, false
-            )
-            adapter = GistListAdapter(getList())
-        }
-    }
+        val viewModel: GistListViewModel =
+            ViewModelProviders.of(this).get(GistListViewModel::class.java)
 
-    fun getList(): List<Gist> {
-        return listOf(
-            Gist(
-                "Diego",
-                "android",
-                "https://avatars0.githubusercontent.com/u/33063030?s=400&u=7fdd634a18923d7f527a41973e950e46eed18e63&v=4"
-            ),
-            Gist(
-                "Bruna",
-                "front",
-                "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
-            ),
-            Gist(
-                "Julia",
-                "design",
-                "https://homepages.cae.wisc.edu/~ece533/images/barbara.png"
-            ),
-            Gist(
-                "Eduardo",
-                "back",
-                "https://homepages.cae.wisc.edu/~ece533/images/boat.png"
-            )
-        )
+        viewModel.gistListLiveData.observe(this, Observer {
+            it?.let { gists ->
+                with(rvGistList) {
+                    layoutManager = LinearLayoutManager(
+                        this@GistListActivity, RecyclerView.VERTICAL, false
+                    )
+                    adapter = GistListAdapter(gists)
+                }
+            }
+        })
+
+        viewModel.getGists()
     }
 }
