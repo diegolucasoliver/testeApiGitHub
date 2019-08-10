@@ -1,4 +1,4 @@
-package com.diego.testeapigithub
+package com.diego.testeapigithub.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

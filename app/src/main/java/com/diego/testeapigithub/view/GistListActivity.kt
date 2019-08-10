@@ -6,9 +6,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.diego.testeapigithub.GistListViewModel
 import com.diego.testeapigithub.R
 import com.diego.testeapigithub.adapter.GistListAdapter
+import com.diego.testeapigithub.viewmodel.GistListViewModel
 import kotlinx.android.synthetic.main.activity_gist_list.*
 
 class GistListActivity : AppCompatActivity() {
