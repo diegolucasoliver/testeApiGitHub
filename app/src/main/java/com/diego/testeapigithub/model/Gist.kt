@@ -1,4 +1,4 @@
-package com.diego.testeapigithub
+package com.diego.testeapigithub.model
 
 data class Gist(
     val user: String,

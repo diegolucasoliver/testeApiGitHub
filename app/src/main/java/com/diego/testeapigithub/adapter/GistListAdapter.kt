@@ -1,10 +1,12 @@
-package com.diego.testeapigithub
+package com.diego.testeapigithub.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.diego.testeapigithub.R
+import com.diego.testeapigithub.model.Gist
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class GistListAdapter(
