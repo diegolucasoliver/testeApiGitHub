@@ -33,7 +33,7 @@ class GistListAdapter(
 
         fun bindView(gist: Gist) {
             user.text = gist.user
-            type.text = gist.type
+            //type.text = gist.type
             Glide
                 .with(itemView.context)
                 .load(gist.avatar)

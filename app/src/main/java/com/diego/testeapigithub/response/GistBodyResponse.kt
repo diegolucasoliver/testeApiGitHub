@@ -1,6 +1,6 @@
 package com.diego.testeapigithub.response
 
 data class GistBodyResponse(
-    val files: List<FilesResponse>,
+    val files: FilesResponse,
     val owner: OwnerResponse
 )
