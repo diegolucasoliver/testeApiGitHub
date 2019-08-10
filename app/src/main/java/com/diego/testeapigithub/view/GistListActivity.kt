@@ -26,7 +26,10 @@ class GistListActivity : AppCompatActivity() {
                     layoutManager = LinearLayoutManager(
                         this@GistListActivity, RecyclerView.VERTICAL, false
                     )
-                    adapter = GistListAdapter(gists)
+                    adapter = GistListAdapter(gists) { gist ->
+                        val intent = GistDetailsActivity.getStartIntent(this@GistListActivity, gist)
+                        this@GistListActivity.startActivity(intent)
+                    }
                 }
             }
         })

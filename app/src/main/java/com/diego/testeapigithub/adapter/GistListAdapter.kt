@@ -10,13 +10,14 @@ import com.diego.testeapigithub.model.Gist
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class GistListAdapter(
-    val gistList: List<Gist>
+    val gistList: List<Gist>,
+    val onItemClickListener: ((gist: Gist) -> Unit)
 ) : RecyclerView.Adapter<GistListAdapter.GistListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GistListViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_list, parent, false)
-        return GistListViewHolder(view)
+        return GistListViewHolder(view, onItemClickListener)
     }
 
     override fun getItemCount() = gistList.count()
@@ -25,7 +26,10 @@ class GistListAdapter(
         holder.bindView(gistList[position])
     }
 
-    class GistListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class GistListViewHolder(
+        itemView: View,
+        val onItemClickListener: ((gist: Gist) -> Unit)
+    ) : RecyclerView.ViewHolder(itemView) {
 
         private val user = itemView.tvUserName
         private val type = itemView.tvGistType
@@ -39,6 +43,9 @@ class GistListAdapter(
                 .load(gist.avatar)
                 .fitCenter()
                 .into(avatar)
+            itemView.setOnClickListener {
+                onItemClickListener.invoke(gist)
+            }
         }
     }
 }
