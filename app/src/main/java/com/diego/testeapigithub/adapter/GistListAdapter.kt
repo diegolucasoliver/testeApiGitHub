@@ -41,6 +41,7 @@ class GistListAdapter(
             Glide
                 .with(itemView.context)
                 .load(gist.avatar)
+                .placeholder(R.drawable.octocat)
                 .fitCenter()
                 .into(avatar)
             itemView.setOnClickListener {

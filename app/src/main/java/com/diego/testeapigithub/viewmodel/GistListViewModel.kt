@@ -35,7 +35,8 @@ class GistListViewModel : ViewModel() {
                                 val gist = Gist(
                                     user = gists[results].owner.login,
                                     avatar = gists[results].owner.avatar_url,
-                                    type = setUpString(type.toString())
+                                    type = setUpString(type.toString()),
+                                    link = gists[results].owner.html_url
                                 )
                                 gistList.add(gist)
                             }
