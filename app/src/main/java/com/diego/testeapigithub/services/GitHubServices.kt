@@ -9,6 +9,6 @@ interface GitHubServices {
 
     @GET("/gists/public")
     fun getGistList(
-        @Query("since") since: String = "2019-08-10T16:47:00Z"
+        @Query("page") page: Int = 0
     ): Call<List<GistBodyResponse>>
 }
