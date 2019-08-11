@@ -16,6 +16,7 @@ class GistDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gist_details)
 
         tvUserNameDetail.text = intent.getStringExtra(EXTRA_USER)
+        tvGistTypeDetail.text = intent.getStringExtra(EXTRA_TYPE)
         Glide
             .with(this)
             .load(intent.getStringExtra(EXTRA_AVATAR))
@@ -23,13 +24,15 @@ class GistDetailsActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val EXTRA_USER = "EXTRA_USER"
-        private const val EXTRA_AVATAR = "EXTRA_AVATAR"
+        private const val EXTRA_USER = "EXTRA USER"
+        private const val EXTRA_AVATAR = "EXTRA AVATAR"
+        private const val EXTRA_TYPE = "EXTRA TYPE"
 
         fun getStartIntent(context: Context, gist: Gist): Intent {
             return Intent(context, GistDetailsActivity::class.java).apply {
                 putExtra(EXTRA_USER, gist.user)
                 putExtra(EXTRA_AVATAR, gist.avatar)
+                putExtra(EXTRA_TYPE, gist.type)
             }
         }
     }

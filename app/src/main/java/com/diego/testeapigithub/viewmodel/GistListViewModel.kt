@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.diego.testeapigithub.model.Gist
+import com.diego.testeapigithub.response.FilesResponse
 import com.diego.testeapigithub.response.GistBodyResponse
 import com.diego.testeapigithub.services.ApiServices
 import retrofit2.Call
@@ -28,11 +29,13 @@ class GistListViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         val gistList: MutableList<Gist> = mutableListOf()
 
-                        response.body()?.let {
-                            for (results in it.indices) {
+                        response.body()?.let { gists ->
+                            for (results in gists.indices) {
+                                var type = setUpTypes(gists[results].files)
                                 val gist = Gist(
-                                    user = it[results].owner.login,
-                                    avatar = it[results].owner.avatar_url
+                                    user = gists[results].owner.login,
+                                    avatar = gists[results].owner.avatar_url,
+                                    type = setUpString(type.toString())
                                 )
                                 gistList.add(gist)
                             }
@@ -44,5 +47,25 @@ class GistListViewModel : ViewModel() {
                     Log.e("onResponse", response.raw().toString())
                 }
             })
+    }
+
+    fun setUpTypes(types: Map<String, FilesResponse>): MutableSet<String> {
+        var entries = types.keys
+        var setOf = mutableSetOf<String>()
+
+        for (result in entries) {
+            setOf.add(types.get(result).toString())
+        }
+
+        return setOf
+    }
+
+    private fun setUpString(value: String): String {
+        var valueReplacement = value.replace("FilesResponse(type=", "")
+        valueReplacement = valueReplacement.replace(")", "")
+        valueReplacement = valueReplacement.replace("[", "")
+        valueReplacement = valueReplacement.replace("]", "")
+
+        return valueReplacement
     }
 }
