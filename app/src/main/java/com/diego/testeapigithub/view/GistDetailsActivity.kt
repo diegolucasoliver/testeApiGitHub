@@ -15,6 +15,8 @@ class GistDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gist_details)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         tvUserNameDetail.text = intent.getStringExtra(EXTRA_USER)
         tvGistTypeDetail.text = intent.getStringExtra(EXTRA_TYPE)
         tvLinkDetail.text = intent.getStringExtra(EXTRA_LINK)
