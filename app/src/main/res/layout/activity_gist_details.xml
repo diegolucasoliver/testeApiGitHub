@@ -15,6 +15,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/descrição_avatar"
             tools:src="@drawable/ic_launcher_background"/>
 
     <TextView
@@ -49,5 +50,12 @@
             app:layout_constraintTop_toBottomOf="@id/tvGistTypeDetail"
             android:layout_marginTop="@dimen/standard_margin"
             tools:text="GitHub"/>
+
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="?android:starStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

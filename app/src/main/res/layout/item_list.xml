@@ -13,6 +13,7 @@
             android:layout_height="75dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/descrição_avatar"
             app:layout_constraintStart_toStartOf="parent"
             tools:src="@drawable/ic_launcher_background"/>
 
@@ -33,16 +34,10 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvUserName"
             app:layout_constraintStart_toEndOf="@id/ivUser"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/standard_margin"
             android:layout_marginStart="@dimen/standard_margin"
-            tools:text="text/plain" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/cbFavorite"/>
-
-    <CheckBox
-            android:id="@+id/cbFavorite"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            tools:text="text/plain"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
