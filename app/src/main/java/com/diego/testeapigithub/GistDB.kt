@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class GistDB(
-    @PrimaryKey(autoGenerate = true)
-    val uid: Int,
-    @ColumnInfo(name = "user")
+    @PrimaryKey
     val user: String,
     @ColumnInfo(name = "type")
     val type: String,
+    @ColumnInfo(name = "link")
+    val link: String,
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     val avatar: ByteArray?
 )

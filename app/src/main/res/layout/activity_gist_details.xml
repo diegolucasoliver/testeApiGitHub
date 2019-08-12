@@ -52,6 +52,7 @@
             tools:text="GitHub"/>
 
     <CheckBox
+            android:id="@+id/cbFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"

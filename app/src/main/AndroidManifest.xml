@@ -13,7 +13,6 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name="com.diego.testeapigithub.ui.view.GistDetailsActivity"
-                android:parentActivityName="com.diego.testeapigithub.ui.view.GistListActivity"
         />
         <activity
                 android:name="com.diego.testeapigithub.ui.view.GistListActivity">

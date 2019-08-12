@@ -13,13 +13,14 @@ import kotlinx.android.synthetic.main.activity_gist_list.*
 
 class GistListActivity : AppCompatActivity() {
 
+    lateinit var viewModel: GistListViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gist_list)
 
-        val viewModel: GistListViewModel =
+        viewModel =
             ViewModelProviders.of(this).get(GistListViewModel::class.java)
-
         viewModel.gistListLiveData.observe(this, Observer {
             it?.let { gists ->
                 with(rvGistList) {
@@ -34,6 +35,12 @@ class GistListActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getGists()
     }
+
+
 }
