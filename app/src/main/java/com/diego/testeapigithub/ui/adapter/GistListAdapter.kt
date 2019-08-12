@@ -1,4 +1,4 @@
-package com.diego.testeapigithub.adapter
+package com.diego.testeapigithub.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

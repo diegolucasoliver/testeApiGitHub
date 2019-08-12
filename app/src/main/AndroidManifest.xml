@@ -12,11 +12,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".view.GistDetailsActivity"
-                android:parentActivityName=".view.GistListActivity"
+                android:name="com.diego.testeapigithub.ui.view.GistDetailsActivity"
+                android:parentActivityName="com.diego.testeapigithub.ui.view.GistListActivity"
         />
         <activity
-                android:name=".view.GistListActivity">
+                android:name="com.diego.testeapigithub.ui.view.GistListActivity">
             <intent-filter>
                 <action
                         android:name="android.intent.action.MAIN"/>

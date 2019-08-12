@@ -1,4 +1,4 @@
-package com.diego.testeapigithub.view
+package com.diego.testeapigithub.ui.view
 
 import android.content.Context
 import android.content.Intent
