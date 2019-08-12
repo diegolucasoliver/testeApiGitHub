@@ -3,6 +3,7 @@ package com.diego.testeapigithub.ui.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diego.testeapigithub.R
@@ -42,5 +43,10 @@ class GistDetailsActivity : AppCompatActivity() {
                 putExtra(EXTRA_LINK, gist.link)
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        finish()
+        return super.onOptionsItemSelected(item)
     }
 }

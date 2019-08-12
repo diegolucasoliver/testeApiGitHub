@@ -14,8 +14,11 @@ import retrofit2.Response
 class GistListViewModel : ViewModel() {
 
     val gistListLiveData: MutableLiveData<List<Gist>> = MutableLiveData()
+    val gistList: MutableList<Gist> = mutableListOf()
+    var count = 1
 
     fun getGists() {
+        count = 1
         ApiServices.service.getGistList()
             .enqueue(object : Callback<List<GistBodyResponse>> {
                 override fun onFailure(call: Call<List<GistBodyResponse>>, t: Throwable) {
@@ -27,7 +30,6 @@ class GistListViewModel : ViewModel() {
                     response: Response<List<GistBodyResponse>>
                 ) {
                     if (response.isSuccessful) {
-                        val gistList: MutableList<Gist> = mutableListOf()
 
                         response.body()?.let { gists ->
                             for (results in gists.indices) {
@@ -43,6 +45,42 @@ class GistListViewModel : ViewModel() {
                         }
 
                         gistListLiveData.value = gistList
+                        count++
+                    }
+
+                    Log.e("onResponse", response.raw().toString())
+                }
+            })
+    }
+
+    fun getNextPage() {
+        ApiServices.service.getGistList(count)
+            .enqueue(object : Callback<List<GistBodyResponse>> {
+                override fun onFailure(call: Call<List<GistBodyResponse>>, t: Throwable) {
+                    Log.e("onFailure", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<List<GistBodyResponse>>,
+                    response: Response<List<GistBodyResponse>>
+                ) {
+                    if (response.isSuccessful) {
+
+                        response.body()?.let { gists ->
+                            for (results in gists.indices) {
+                                var type = setUpTypes(gists[results].files)
+                                val gist = Gist(
+                                    user = gists[results].owner.login,
+                                    avatar = gists[results].owner.avatar_url,
+                                    type = setUpString(type.toString()),
+                                    link = gists[results].owner.html_url
+                                )
+                                gistList.add(gist)
+                            }
+                        }
+
+                        gistListLiveData.value = gistList
+                        count++
                     }
 
                     Log.e("onResponse", response.raw().toString())
