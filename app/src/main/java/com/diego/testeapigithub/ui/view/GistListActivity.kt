@@ -64,7 +64,6 @@ class GistListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        list.removeAll(list)
         viewModel.getGists()
     }
 
